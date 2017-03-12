@@ -31,8 +31,8 @@ import facenet_train
 import facenet_train_classifier
 import validate_on_lfw
 import compare
-import visualize
-import test_invariance_on_lfw
+# import visualize
+# import test_invariance_on_lfw
 import download_and_extract_model
 
 def memory_usage_psutil():

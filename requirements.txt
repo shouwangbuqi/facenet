@@ -3,7 +3,6 @@ scipy
 scikit-learn
 opencv-python
 h5py
-matplotlib
 Pillow
 requests
 psutil
