@@ -35,12 +35,12 @@ import compare
 # import test_invariance_on_lfw
 import download_and_extract_model
 
-def memory_usage_psutil():
-    # return the memory usage in MB
-    import psutil
-    process = psutil.Process(os.getpid())
-    mem = process.memory_info()[0] / float(2 ** 20)
-    return mem
+# def memory_usage_psutil():
+#     # return the memory usage in MB
+#     import psutil
+#     process = psutil.Process(os.getpid())
+#     mem = process.memory_info()[0] / float(2 ** 20)
+#     return mem
 
 class TrainTest(unittest.TestCase):
   
@@ -54,7 +54,7 @@ class TrainTest(unittest.TestCase):
         self.pretrained_model_name = '20170216-091149'
         download_and_extract_model.download_and_extract_model(self.pretrained_model_name, 'data/')
         self.model_file = os.path.join('data', self.pretrained_model_name, 'model-%s.ckpt-250000' % self.pretrained_model_name)
-        print('Memory utilization (SetUpClass): %.3f MB' % memory_usage_psutil())
+#         print('Memory utilization (SetUpClass): %.3f MB' % memory_usage_psutil())
 
         
     @classmethod
@@ -62,8 +62,8 @@ class TrainTest(unittest.TestCase):
         # Recursively remove the temporary directory
         shutil.rmtree(self.tmp_dir)
         
-    def tearDown(self):
-        print('Memory utilization (TearDown): %.3f MB' % memory_usage_psutil())
+#     def tearDown(self):
+#         print('Memory utilization (TearDown): %.3f MB' % memory_usage_psutil())
 
 
     @unittest.skip("Skip this test case for now")
