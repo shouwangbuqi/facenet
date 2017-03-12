@@ -215,8 +215,9 @@ def main(args):
         sess.run(tf.global_variables_initializer())
         sess.run(tf.local_variables_initializer())
         summary_writer = tf.summary.FileWriter(log_dir, sess.graph)
-        coord = tf.train.Coordinator()
-        tf.train.start_queue_runners(coord=coord, sess=sess)
+#         coord = tf.train.Coordinator()
+#         tf.train.start_queue_runners(coord=coord, sess=sess)
+        tf.train.start_queue_runners(sess=sess)
 
         with sess.as_default():
 
