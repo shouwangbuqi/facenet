@@ -120,88 +120,88 @@ class TrainTest(unittest.TestCase):
         args = facenet_train_classifier.parse_arguments(argv)
         facenet_train_classifier.main(args)
 
-    def test_training_classifier_inception_resnet_v2(self):
-        argv = ['--logs_base_dir', self.tmp_dir,
-                '--models_base_dir', self.tmp_dir,
-                '--data_dir', self.dataset_dir,
-                '--model_def', 'models.inception_resnet_v2',
-                '--epoch_size', '1',
-                '--max_nrof_epochs', '1',
-                '--batch_size', '1',
-                '--lfw_pairs', self.lfw_pairs_file,
-                '--lfw_dir', self.dataset_dir,
-                '--lfw_nrof_folds', '2',
-                '--lfw_batch_size', '1',
-                '--nrof_preprocess_threads', '1',
-                '--no_store_revision_info' ]
-        args = facenet_train_classifier.parse_arguments(argv)
-        facenet_train_classifier.main(args)
- 
-    def test_train_tripletloss_inception_resnet_v1(self):
-        argv = ['--logs_base_dir', self.tmp_dir,
-                '--models_base_dir', self.tmp_dir,
-                '--data_dir', self.dataset_dir,
-                '--model_def', 'models.inception_resnet_v1',
-                '--epoch_size', '1',
-                '--max_nrof_epochs', '1',
-                '--batch_size', '6',
-                '--people_per_batch', '2',
-                '--images_per_person', '3',
-                '--lfw_pairs', self.lfw_pairs_file,
-                '--lfw_dir', self.dataset_dir,
-                '--lfw_nrof_folds', '2',
-                '--no_store_revision_info' ]
-        args = facenet_train.parse_arguments(argv)
-        facenet_train.main(args)
- 
-    def test_finetune_tripletloss_inception_resnet_v1(self):
-        argv = ['--logs_base_dir', self.tmp_dir,
-                '--models_base_dir', self.tmp_dir,
-                '--data_dir', self.dataset_dir,
-                '--model_def', 'models.inception_resnet_v1',
-                '--pretrained_model', self.model_file,
-                '--epoch_size', '1',
-                '--max_nrof_epochs', '1',
-                '--batch_size', '6',
-                '--people_per_batch', '2',
-                '--images_per_person', '3',
-                '--lfw_pairs', self.lfw_pairs_file,
-                '--lfw_dir', self.dataset_dir,
-                '--lfw_nrof_folds', '2',
-                '--no_store_revision_info' ]
-        args = facenet_train.parse_arguments(argv)
-        facenet_train.main(args)
- 
-    def test_compare(self):
-        argv = [os.path.join('data/', self.pretrained_model_name),
-                'data/images/Anthony_Hopkins_0001.jpg',
-                'data/images/Anthony_Hopkins_0002.jpg' ]
-        args = compare.parse_arguments(argv)
-        compare.main(args)
- 
-    @unittest.skip("Skip this test case for now")
-    def test_visualize(self):
-        model_dir = os.path.abspath('../data/model/20160620-173927')
-        create_checkpoint_file(model_dir, 'model.ckpt-500000')
-        argv = [model_dir, 
-                '--model_def', 'models.nn4' ]
-        args = visualize.parse_arguments(argv)
-        visualize.main(args)
- 
-    @unittest.skip("Skip this test case for now")
-    def test_test_invariance_on_lfw(self):
-        model_dir = os.path.abspath('../data/model/20160620-173927')
-        model_file = os.path.join(model_dir, 'model.ckpt-500000')
-        argv = ['--model_file', model_file,
-                '--lfw_pairs', self.lfw_pairs_file,
-                '--lfw_dir', self.dataset_dir,
-                '--lfw_nrof_folds', '2',
-                '--orig_image_size', '96',
-                '--nrof_offsets', '1',
-                '--nrof_angles', '1',
-                '--nrof_scales', '1' ]
-        args = test_invariance_on_lfw.parse_arguments(argv)
-        test_invariance_on_lfw.main(args)
+#     def test_training_classifier_inception_resnet_v2(self):
+#         argv = ['--logs_base_dir', self.tmp_dir,
+#                 '--models_base_dir', self.tmp_dir,
+#                 '--data_dir', self.dataset_dir,
+#                 '--model_def', 'models.inception_resnet_v2',
+#                 '--epoch_size', '1',
+#                 '--max_nrof_epochs', '1',
+#                 '--batch_size', '1',
+#                 '--lfw_pairs', self.lfw_pairs_file,
+#                 '--lfw_dir', self.dataset_dir,
+#                 '--lfw_nrof_folds', '2',
+#                 '--lfw_batch_size', '1',
+#                 '--nrof_preprocess_threads', '1',
+#                 '--no_store_revision_info' ]
+#         args = facenet_train_classifier.parse_arguments(argv)
+#         facenet_train_classifier.main(args)
+#  
+#     def test_train_tripletloss_inception_resnet_v1(self):
+#         argv = ['--logs_base_dir', self.tmp_dir,
+#                 '--models_base_dir', self.tmp_dir,
+#                 '--data_dir', self.dataset_dir,
+#                 '--model_def', 'models.inception_resnet_v1',
+#                 '--epoch_size', '1',
+#                 '--max_nrof_epochs', '1',
+#                 '--batch_size', '6',
+#                 '--people_per_batch', '2',
+#                 '--images_per_person', '3',
+#                 '--lfw_pairs', self.lfw_pairs_file,
+#                 '--lfw_dir', self.dataset_dir,
+#                 '--lfw_nrof_folds', '2',
+#                 '--no_store_revision_info' ]
+#         args = facenet_train.parse_arguments(argv)
+#         facenet_train.main(args)
+#  
+#     def test_finetune_tripletloss_inception_resnet_v1(self):
+#         argv = ['--logs_base_dir', self.tmp_dir,
+#                 '--models_base_dir', self.tmp_dir,
+#                 '--data_dir', self.dataset_dir,
+#                 '--model_def', 'models.inception_resnet_v1',
+#                 '--pretrained_model', self.model_file,
+#                 '--epoch_size', '1',
+#                 '--max_nrof_epochs', '1',
+#                 '--batch_size', '6',
+#                 '--people_per_batch', '2',
+#                 '--images_per_person', '3',
+#                 '--lfw_pairs', self.lfw_pairs_file,
+#                 '--lfw_dir', self.dataset_dir,
+#                 '--lfw_nrof_folds', '2',
+#                 '--no_store_revision_info' ]
+#         args = facenet_train.parse_arguments(argv)
+#         facenet_train.main(args)
+#  
+#     def test_compare(self):
+#         argv = [os.path.join('data/', self.pretrained_model_name),
+#                 'data/images/Anthony_Hopkins_0001.jpg',
+#                 'data/images/Anthony_Hopkins_0002.jpg' ]
+#         args = compare.parse_arguments(argv)
+#         compare.main(args)
+#  
+#     @unittest.skip("Skip this test case for now")
+#     def test_visualize(self):
+#         model_dir = os.path.abspath('../data/model/20160620-173927')
+#         create_checkpoint_file(model_dir, 'model.ckpt-500000')
+#         argv = [model_dir, 
+#                 '--model_def', 'models.nn4' ]
+#         args = visualize.parse_arguments(argv)
+#         visualize.main(args)
+#  
+#     @unittest.skip("Skip this test case for now")
+#     def test_test_invariance_on_lfw(self):
+#         model_dir = os.path.abspath('../data/model/20160620-173927')
+#         model_file = os.path.join(model_dir, 'model.ckpt-500000')
+#         argv = ['--model_file', model_file,
+#                 '--lfw_pairs', self.lfw_pairs_file,
+#                 '--lfw_dir', self.dataset_dir,
+#                 '--lfw_nrof_folds', '2',
+#                 '--orig_image_size', '96',
+#                 '--nrof_offsets', '1',
+#                 '--nrof_angles', '1',
+#                 '--nrof_scales', '1' ]
+#         args = test_invariance_on_lfw.parse_arguments(argv)
+#         test_invariance_on_lfw.main(args)
 
 # Create a checkpoint file pointing to the model
 def create_checkpoint_file(model_dir, model_file):

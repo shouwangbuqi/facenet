@@ -164,8 +164,9 @@ def main(args):
             'is_training': phase_train_placeholder
         }
         # Build the inference graph
-        prelogits, _ = network.inference(image_batch, args.keep_probability, 
-            phase_train=phase_train_placeholder, weight_decay=args.weight_decay)
+#         prelogits, _ = network.inference(image_batch, args.keep_probability, 
+#             phase_train=phase_train_placeholder, weight_decay=args.weight_decay)
+        prelogits = slim.flatten(image_batch)
         bottleneck = slim.fully_connected(prelogits, args.embedding_size, activation_fn=None, 
                 weights_initializer=tf.truncated_normal_initializer(stddev=0.1), 
                 weights_regularizer=slim.l2_regularizer(args.weight_decay),
@@ -241,6 +242,7 @@ def main(args):
                 if args.lfw_dir:
                     evaluate(sess, enqueue_op, image_paths_placeholder, labels_placeholder, phase_train_placeholder, batch_size_placeholder, 
                         embeddings, label_batch, lfw_paths, actual_issame, args.lfw_batch_size, args.lfw_nrof_folds, log_dir, step, summary_writer)
+    coord.request_stop()
     sess.close()
     return model_dir
   
