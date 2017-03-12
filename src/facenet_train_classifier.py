@@ -242,8 +242,8 @@ def main(args):
                 if args.lfw_dir:
                     evaluate(sess, enqueue_op, image_paths_placeholder, labels_placeholder, phase_train_placeholder, batch_size_placeholder, 
                         embeddings, label_batch, lfw_paths, actual_issame, args.lfw_batch_size, args.lfw_nrof_folds, log_dir, step, summary_writer)
-    coord.request_stop()
-    sess.close()
+    #coord.request_stop()
+    #sess.close()
     return model_dir
   
 def find_threshold(var, percentile):
